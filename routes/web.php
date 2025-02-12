@@ -20,7 +20,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('posts', 'App\Http\Controllers\PostController')->middleware('auth');
-    Route::post('/post/{post}/vote', [PostController::class, 'vote'])->name('posts.vote');
+    Route::post('/posts/{post}/vote', [PostController::class, 'vote'])->name('posts.vote')
+    ->middleware('auth');
 });
 
 require __DIR__.'/auth.php';

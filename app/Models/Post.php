@@ -7,6 +7,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 
 class Post extends Model
@@ -28,9 +29,9 @@ class Post extends Model
     }
 
 
-    public function votes() : \Illuminate\Database\Eloquent\Relations\HasMany
+    public function votedUsers() : BelongsToMany
     {
-        return $this->hasMany(Vote::class);
+        return $this->belongsToMany(User::class, 'votes');
     }
 }
 

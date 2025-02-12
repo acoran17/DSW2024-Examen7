@@ -13,7 +13,12 @@
         @foreach ($posts as $post)
         <div class="rounded-3xl shadow-lg bg-white m-3 p-3 border-gray-500">
           <div class="grid grid-flow-col justify-items-stretch">
-            <span class="text-4xl mt-3 col-auto">{{$post->title}}</span>
+            <span class="text-4xl mt-3 col-auto">{{$post->title}}
+              @if ($post->votedUsers)
+              <span class="text-sm font-mono bg-slate-200 p-2 rounded-xl">
+                {{ $post->votedUsers->count() }}</span>
+              @endif
+            </span>
             <div class="text-right pt-3">
               <span class="text-sm bg-slate-200 p-2 rounded-2xl mt-5">
                 {{ \Carbon\Carbon::create($post->published_at)->format('d/m/Y')}}
